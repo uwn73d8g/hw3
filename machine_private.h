@@ -1,0 +1,11 @@
+#ifndef MACHINE_PRIVATE_H
+#define MACHINE_PRIVATE_H
+
+// DO NOT INCLUDE THIS FILE IN USER CODE
+
+#include "machine.h"
+
+uint8_t  MEMORY[MEMSIZE];
+int16_t  REGISTER[NREGISTERS];  // R0 is 0
+
+#endif // MACHINE_PRIVATE_H
