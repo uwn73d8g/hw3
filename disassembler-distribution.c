@@ -35,11 +35,11 @@ void disassemble(FILE *out, uint32_t instruction) {
     
     switch (OP) {
         case STOP:
-            fprintf("[0x%04x]: 0x%0x\n  STOP");
+            printf("[0x%04x]: 0x%0x\n  STOP");
             break;
             
         case NOP:
-            fprintf("[0x%04x]: 0x%0x\n  NOP");
+            printf("[0x%04x]: 0x%0x\n  NOP");
             break;
             
         case LW:
@@ -140,7 +140,7 @@ void disassemble(FILE *out, uint32_t instruction) {
             
         default:
 //            printf("@ 0x%04x\tMachine check: invalid opcode: 0x%0x\n");
-            fprintf("");
+            printf("");
         }
     }
 
@@ -160,6 +160,6 @@ void disassemble(FILE *out, uint32_t instruction) {
   //    %0 - Print leading zeroes
   //    4  - print 4 hex digits
   
-  fprintf(out, "[0x%04x]: 0x%0x\n", PC, instruction);
+//  fprintf(out, "[0x%04x]: 0x%0x\n", PC, instruction);
 
 
