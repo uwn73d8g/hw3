@@ -15,7 +15,7 @@ void disassemble(FILE *out, uint32_t instruction) {
   //   The goal is to print a readable form of the instruction.
   //   The readable form is created by looking at the bit
   //   string representation of the instruction (held in
-  //   parameter instruction) and "disassembling" it.
+  //   parameter instruction) and "disassembling"it.
   //
   //   Run the solution executable for an example of what you might
   //   print here.
@@ -36,7 +36,7 @@ void disassemble(FILE *out, uint32_t instruction) {
     IMMED_12 = (IMMED_12 << 4) >> 4;
     IMMED_15 = (IMMED_15 << 1) >> 1;
 
-  // The fprintf "format string" is just a string with
+  // The fprintf "format string"is just a string with
   // format specifications mixed in.  The "just a string"
   // part is printed.  The format specifications are how to
   // print the value of a variable.
@@ -50,7 +50,7 @@ void disassemble(FILE *out, uint32_t instruction) {
   //    x - Print in hex
   //    %0 - Print leading zeroes
   //    4  - print 4 hex digits
-    fprintf(out, "[0x%04x]: 0x%0x\n", PC, instruction);
+    fprintf(out, "[0x%04x]: 0x%0x  ", PC, instruction);
 
   switch(OP) {
     case STOP:
@@ -63,34 +63,34 @@ void disassemble(FILE *out, uint32_t instruction) {
 
     case LW:
 
-      fprintf(out, " LW r%d r%d r%d\n",  RA, RB, RC);
+      fprintf(out, "LW r%d r%d r%d\n",  RA, RB, RC);
       break;
 
     case LB:
 
-      fprintf(out, " LB r%d r%d r%d\n",  RA, RB, RC);
+      fprintf(out, "LB r%d r%d r%d\n",  RA, RB, RC);
       break;
 
     case SW:
 
-      fprintf(out, " SW r%d r%d r%d\n", RA, RB, RC);
+      fprintf(out, "SW r%d r%d r%d\n", RA, RB, RC);
       break;
 
     case SB:
 
-      fprintf(out, " SB r%d r%d r%d\n", RA, RB, RC);
+      fprintf(out, "SB r%d r%d r%d\n", RA, RB, RC);
       break;
 
     case ADD:
-      fprintf(out, " ADD r%d r%d r%d\n",  RA, RB, RC);
+      fprintf(out, "ADD r%d r%d r%d\n",  RA, RB, RC);
       break;
       
     case SUB:
-      fprintf(out, " SUB r%d r%d r%d\n",  RA, RB, RC);
+      fprintf(out, "SUB r%d r%d r%d\n",  RA, RB, RC);
       break;
       
     case MUL:
-      fprintf(out, " MUL r%d r%d r%d\n",  RA, RB, RC);
+      fprintf(out, "MUL r%d r%d r%d\n",  RA, RB, RC);
       break;
       
     case DIV:
@@ -101,70 +101,70 @@ void disassemble(FILE *out, uint32_t instruction) {
 	  break;
 	}
 
-      fprintf(out, " DIV r%d r%d r%d\n", RA, RB, RC);
+      fprintf(out, "DIV r%d r%d r%d\n", RA, RB, RC);
       break;
       
     case ADDI:
-      fprintf(out, " ADDI r%d r%d r%d ",  RA, RB, IMMED_12);
+      fprintf(out, "ADDI r%d r%d r%d ",  RA, RB, IMMED_12);
       break;
 
     case AND:
-      fprintf(out, " AND r%d r%d r%d\n",  RA, RB, RC);
+      fprintf(out, "AND r%d r%d r%d\n",  RA, RB, RC);
       break;
       
     case OR:
-      fprintf(out, " OR r%d r%d r%d\n",  RA, RB, RC);
+      fprintf(out, "OR r%d r%d r%d\n",  RA, RB, RC);
       break;
       
     case XOR:
-      fprintf(out, " XOR r%d r%d r%d\n",  RA, RB, RC);
+      fprintf(out, "XOR r%d r%d r%d\n",  RA, RB, RC);
       break;
 
     case SHFTL:
-      fprintf(out, " SHFTL r%d r%d $%d\n",  RA, RB, IMMED_12);
+      fprintf(out, "SHFTL r%d r%d $%d\n",  RA, RB, IMMED_12);
       break;
       
     case SHFTR:
-      fprintf(out, " SHFTR r%d r%d $%d\n",  RA, RB, IMMED_12);
+      fprintf(out, "SHFTR r%d r%d $%d\n",  RA, RB, IMMED_12);
       break;
 
     case CMP:
 
-      fprintf(out, " CMP r%d r%d $%d\n", RA, RB, RC);
+      fprintf(out, "CMP r%d r%d $%d\n", RA, RB, RC);
       break;
       
     case BE:
 
-      fprintf(out, " BE ",  IMMED_10);
+      fprintf(out, "BE ",  IMMED_10);
       break;
       
     case BLT:
 
-      fprintf(out, " BLT ", IMMED_10);
+      fprintf(out, "BLT ", IMMED_10);
       break;
       
     case BGT:
 
-      fprintf(out, " BGT ", IMMED_10);
+      fprintf(out, "BGT ", IMMED_10);
       break;
       
     case JR:
-      fprintf(out, " JR r%d r%d $%d\n",  RA, RB, RC);
+      fprintf(out, "JR r%d r%d $%d\n",  RA, RB, RC);
       break;
 
     case CALL:
 
-      fprintf(out, " CALL r%d r%d ", RA, RB, RC);
+      fprintf(out, "CALL r%d r%d ", RA, RB, RC);
       break;
       
     case PRINTR:
       
-       fprintf(out, " PRINTR r%d r%d ", RA, RB, RC);
+       fprintf(out, "PRINTR r%d r%d ", RA, RB, RC);
       break;
 
     case PRINTM:
 
-  fprintf(out, " PRINTM r%d r%d ",  RA, RB, RC);
+  fprintf(out, "PRINTM r%d r%d ",  RA, RB, RC);
       break;
 
 
@@ -173,7 +173,7 @@ void disassemble(FILE *out, uint32_t instruction) {
       break;
 
     default:
-      fprintf(stderr, " 0x%04x\tMachine check: invalid opcode: ", PC, OP);
+      fprintf(stderr, "0x%04x\tMachine check: invalid opcode: ", PC, OP);
       }
     }
   }
