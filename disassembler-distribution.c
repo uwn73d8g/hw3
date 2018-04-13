@@ -54,11 +54,11 @@ void disassemble(FILE *out, uint32_t instruction) {
 
   switch(OP) {
     case STOP:
-      fprintf(out, "STOP");
+      fprintf(out, "STOP\n");
       break;
 
     case NOP:
-      fprintf(out, "NOP");
+      fprintf(out, "NOP\n");
       break;
 
     case LW:
@@ -105,7 +105,7 @@ void disassemble(FILE *out, uint32_t instruction) {
       break;
       
     case ADDI:
-      fprintf(out, "ADDI r%d r%d r%d ",  RA, RB, IMMED_12);
+      fprintf(out, "ADDI r%d r%d r%d\n",  RA, RB, IMMED_12);
       break;
 
     case AND:
@@ -135,17 +135,17 @@ void disassemble(FILE *out, uint32_t instruction) {
       
     case BE:
 
-      fprintf(out, "BE ",  IMMED_10);
+      fprintf(out, "BE  %d\n",  IMMED_10);
       break;
       
     case BLT:
 
-      fprintf(out, "BLT ", IMMED_10);
+      fprintf(out, "BLT  %d\n", IMMED_10);
       break;
       
     case BGT:
 
-      fprintf(out, "BGT ", IMMED_10);
+      fprintf(out, "BGT  %d\n", IMMED_10);
       break;
       
     case JR:
@@ -154,17 +154,17 @@ void disassemble(FILE *out, uint32_t instruction) {
 
     case CALL:
 
-      fprintf(out, "CALL r%d r%d ", RA, RB, RC);
+      fprintf(out, "CALL r%d r%d\n", RA, RB, RC);
       break;
       
     case PRINTR:
       
-       fprintf(out, "PRINTR r%d r%d ", RA, RB, RC);
+       fprintf(out, "PRINTR r%d r%d\n", RA, RB, RC);
       break;
 
     case PRINTM:
 
-  fprintf(out, "PRINTM r%d r%d ",  RA, RB, RC);
+  fprintf(out, "PRINTM r%d r%d\n",  RA, RB, RC);
       break;
 
 
