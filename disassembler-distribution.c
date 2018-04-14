@@ -32,9 +32,7 @@ void disassemble(FILE *out, uint32_t instruction) {
     int16_t  IMMED_12 = (instruction) & 4095;
     int16_t  IMMED_15 = (instruction) & 32767;
 
-    IMMED_10 = (IMMED_10 << 6) >> 6;
-    IMMED_12 = (IMMED_12 << 4) >> 4;
-    IMMED_15 = (IMMED_15 << 1) >> 1;
+
 
   // The fprintf "format string"is just a string with
   // format specifications mixed in.  The "just a string"
@@ -94,18 +92,11 @@ void disassemble(FILE *out, uint32_t instruction) {
       break;
       
     case DIV:
-      {
-	int16_t regC = getRegSigned(RC);
-	if ( regC == 0 ) {
-	  fprintf(stderr, "Machine check: divisor is 0\n");
-	  break;
-	}
-
       fprintf(out, "DIV r%d r%d r%d\n", RA, RB, RC);
       break;
       
     case ADDI:
-      fprintf(out, "ADDI r%d r%d r%d\n",  RA, RB, IMMED_12);
+      fprintf(out, "ADDI r%d r%d 0x00%0x\n",  RA, RB, IMMED_12);
       break;
 
     case AND:
@@ -121,59 +112,59 @@ void disassemble(FILE *out, uint32_t instruction) {
       break;
 
     case SHFTL:
-      fprintf(out, "SHFTL r%d r%d $%d\n",  RA, RB, IMMED_12);
+      fprintf(out, "SHFTL r%d r%d 0x%0x\n",  RA, RB, IMMED_12);
       break;
       
     case SHFTR:
-      fprintf(out, "SHFTR r%d r%d $%d\n",  RA, RB, IMMED_12);
+      fprintf(out, "SHFTR r%d r%d 0x%0x\n",  RA, RB, IMMED_12);
       break;
 
     case CMP:
 
-      fprintf(out, "CMP r%d r%d $%d\n", RA, RB, RC);
+      fprintf(out, "CMP r%d r%d r%d\n", RA, RB, RC);
       break;
       
     case BE:
 
-      fprintf(out, "BE  %d\n",  IMMED_10);
+      fprintf(out, "BE  0x%0x\n",  IMMED_10);
       break;
       
     case BLT:
 
-      fprintf(out, "BLT  %d\n", IMMED_10);
+      fprintf(out, "BLT  %0x\n", IMMED_10);
       break;
       
     case BGT:
 
-      fprintf(out, "BGT  %d\n", IMMED_10);
+      fprintf(out, "BGT  0x%0x\n", IMMED_10);
       break;
       
     case JR:
-      fprintf(out, "JR r%d r%d $%d\n",  RA, RB, RC);
+      fprintf(out, "JR r%d r%d r%d\n",  RA, RB, RC);
       break;
 
     case CALL:
 
-      fprintf(out, "CALL r%d r%d\n", RA, RB, RC);
+      fprintf(out, "CALL r%d 0x%0x\n", RA, IMMED_15);
       break;
       
     case PRINTR:
       
-       fprintf(out, "PRINTR r%d r%d\n", RA, RB, RC);
+       fprintf(out, "PRINTR r%d r%d\n", RA, RB);
       break;
 
     case PRINTM:
 
-  fprintf(out, "PRINTM r%d r%d\n",  RA, RB, RC);
+  fprintf(out, "PRINTM r%d r%d\n",  RA, RB);
       break;
 
 
     case PRINTC:
-      fprintf(out, "PRINTC r%d r%d ", RA, RB, RC);
+      fprintf(out, "PRINTC r%d r%d ", RA, RB);
       break;
 
     default:
-      fprintf(stderr, "0x%04x\tMachine check: invalid opcode: ", PC, OP);
-      }
+      fprintf(stderr, "0x%04x\tMachine check: invalid opcode: ", PC);
+      
     }
   }

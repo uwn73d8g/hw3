@@ -63,9 +63,9 @@ void simRun(bool debug) {
     //--------------------------------------------------------
 
     // Your code here
-    IMMED_10 = IMMED_10<<6>>6;
-    IMMED_12 = IMMED_12<<4>>4;
-    IMMED_15 = IMMED_15<<1>>1;
+    IMMED_10 = IMMED_10<<22>>22;
+    IMMED_12 = IMMED_12<<20>>20;
+    IMMED_15 = IMMED_15<<17>>17;
   
 
     //----------------------------------

@@ -1,0 +1,9 @@
+!0010  # entry point is 0x0010
+@0010
+298010	# 0010:  start:  addi    r3  r0  start
+2a001f	# 0013:          addi    r4  r0  end
+5c30	# 0016:  top:    printm  r0  r3  r0
+29b002	# 0018:          addi    r3  r3  $2
+4038	# 001b:          cmp     r0  r3  r4
+4bf9	# 001d:          blt     :top 
+00	# 001f:  end:         stop
